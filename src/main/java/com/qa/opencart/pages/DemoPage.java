@@ -6,7 +6,8 @@ public class DemoPage {
 
 		int i = 1;
 		System.out.println(i);
-
+		int j = 2;
+		System.out.println(i + j);
 	}
 
 }
