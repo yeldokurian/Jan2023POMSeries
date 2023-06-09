@@ -10,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import com.qa.opencart.utils.AppConstants;
 import com.qa.opencart.utils.ElementUtil;
 
+import io.qameta.allure.Step;
+
 public class LoginPage {
 	
 private WebDriver driver;
@@ -33,19 +35,21 @@ private By registerLink = By.linkText("Register");
 
 
 // 3. public page actions/methods
+@Step("getting login page title")
 public String getLoginPageTitle() {
 	return eleUtil.waitForTitleIsAndCapture(AppConstants.LOGIN_PAGE_TITLE_VALUE, AppConstants.SHORT_DEFAULT_WAIT);	
 }
-
+@Step("getting login page url")
 public String getLoginPageUrl() {
 	return eleUtil.waitForURLContainsAndCapture(AppConstants.LOGIN_PAGE_URL_FRACTION_VALUE, AppConstants.SHORT_DEFAULT_WAIT);
 	
 }
+@Step("checking forgot pwd link exist on the login page")
 public boolean isForgotPwdLinkExit() {
 	 return eleUtil.checkElementIsDisplayed(forgotPwdLink);
 	
 }
-
+@Step("getting footer links")
 public List<String> getFooterLinksList() {
 	List<WebElement> footerLinksList =  eleUtil.waitForElementsVisible(footerlinks, AppConstants.MEDIUM_DEFAULT_WAIT);
 	List<String> footerTextList = new ArrayList<String>();
@@ -56,6 +60,7 @@ public List<String> getFooterLinksList() {
 	return footerTextList;
 	
 }
+@Step("login with usernmae{0} and pwd{1}")
 public AccountsPage doLogin(String username, String pwd) {
 	System.out.println("Correct credentials are:" + username + ":" + pwd);
 	eleUtil.waitForElementVisible(emailId, AppConstants.MEDIUM_DEFAULT_WAIT).sendKeys(username);
@@ -65,6 +70,7 @@ public AccountsPage doLogin(String username, String pwd) {
 	return new AccountsPage(driver);
 	
 }
+@Step("login with wrong usernmae{0} and pwd{1}")
 public boolean doLoginWithWrongCredentials(String username, String pwd) {
 	System.out.println("Wrong credentials are:" + username + ":" + pwd);
 	eleUtil.waitForElementVisible(emailId, AppConstants.MEDIUM_DEFAULT_WAIT);

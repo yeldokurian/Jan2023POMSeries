@@ -10,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import com.qa.opencart.utils.AppConstants;
 import com.qa.opencart.utils.ElementUtil;
 
+import io.qameta.allure.Step;
+
 public class AccountsPage {
 	
 	private WebDriver driver;
@@ -31,21 +33,22 @@ public class AccountsPage {
 	
 	
 	//3. page actions:
-	
+	@Step("getting accounts page title")
 	public String getAccPageTitle() {
 		
 		return eleUtil.waitForTitleIsAndCapture(AppConstants.ACCOUNTS_PAGE_TITLE_VALUE, AppConstants.SHORT_DEFAULT_WAIT);
 	}
-	
+	@Step("checking whether logout link exist")
 	public boolean isLogoutLinkExist() {
 		return eleUtil.checkElementIsDisplayed(logout);
 	
 	}
-	
+	@Step("checking whether account link exist")
 	public boolean isMyAccountLinkExist() {
 		return eleUtil.checkElementIsDisplayed(myAccount);
 	
 	}
+	@Step("getting accounts page headers list")
 	public List<String> getAccountPageHeadersList() {
 		List<WebElement> headersList = eleUtil.waitForElementsVisible(accHeaders, AppConstants.MEDIUM_DEFAULT_WAIT);
 		List<String> headersValList = new ArrayList<String>();
@@ -57,7 +60,7 @@ public class AccountsPage {
 }
 		return headersValList;	
 	}
-	
+	@Step("searching for element and sending search term and clicking on it")
 	public ResultsPage doSearch(String searchTerm) {
 		eleUtil.waitForElementVisible(search, AppConstants.MEDIUM_DEFAULT_WAIT);
 		eleUtil.doSendKeys(search, searchTerm);
