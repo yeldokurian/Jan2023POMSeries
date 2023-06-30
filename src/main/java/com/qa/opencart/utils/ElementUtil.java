@@ -38,7 +38,7 @@ public class ElementUtil {
 
 	public void doSendKeys(By locator, String value) {
 		if (value == null) {
-			System.out.println("null vlaues are not allowed");
+			System.out.println("null vlaues are not allowed.....");
 			throw new FrameException("VALUECANNOTBENULL");
 		}
 
